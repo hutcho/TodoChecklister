@@ -1,10 +1,7 @@
 --------------------------------------
 -- Imports
 --------------------------------------
----@class TodoAddon
-local TodoAddon = select(2, ...)
----@type string
-local addonName = select(1, ...)
+local addonName, TodoAddon = ...
 
 ---@class Constants
 local Constants = TodoAddon.Constants
@@ -15,7 +12,7 @@ local TodoChecklisterFrame = TodoAddon.TodoChecklisterFrame
 ---@class InterfaceOptions
 local InterfaceOptions = TodoAddon.InterfaceOptions
 ---@class Settings
-local Settings = TodoAddon.Settings
+local TCSettings = TodoAddon.Settings
 
 --------------------------------------
 -- Declarations
@@ -77,9 +74,9 @@ Chat.commands = {
 -- Chat functions
 --------------------------------------
 function Chat:Print(...)
-    if (not Settings:ChatMuted()) then
+    if (TCSettings:ChatShow()) then
         local hex = select(4, Utils:GetThemeColor())
-        local prefix = string.format("|cff%s%s|r", hex:upper(), addonName)
+        local prefix = string.format("|cff%s%s:|r", hex:upper(), addonName)
         DEFAULT_CHAT_FRAME:AddMessage(string.join(" ", prefix, ...))
     end
 end
