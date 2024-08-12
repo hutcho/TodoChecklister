@@ -10,7 +10,7 @@ local addonName = select(1, ...)
 ---@class Debug
 local Debug = TodoAddon.Debug
 ---@class Settings
-local Settings = TodoAddon.Settings
+local TCSettings = TodoAddon.Settings
 ---@class TodoList
 local TodoList = TodoAddon.TodoList
 ---@class InterfaceOptions
@@ -25,8 +25,8 @@ local MinimapIcon = TodoAddon.MinimapIcon
 --------------------------------------
 -- Init keybindings
 --------------------------------------
-BINDING_HEADER_TC_HEADER = addonName
-BINDING_NAME_TC_TOGGLE_FRAME = "Toggle window"
+BINDING_HEADER_TODOCHECKLISTER_HEADER = addonName
+BINDING_NAME_TC_TOGGLE_FRAME = "Toggle window display"
 
 -- Export the method TodoChecklisterFrame:Toggle to a global function
 -- so that it can be called from a keybind
@@ -47,7 +47,7 @@ function TodoAddon:Init(event, name)
 
     -- Config
     Debug:Init()
-    Settings:Init()
+    TCSettings:Init()
 
     -- Model
     TodoList:Init()
