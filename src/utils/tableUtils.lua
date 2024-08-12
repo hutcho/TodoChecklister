@@ -1,8 +1,7 @@
 --------------------------------------
 -- Imports
 --------------------------------------
----@class TodoAddon
-local TodoAddon = select(2, ...)
+local _, TodoAddon = ...
 
 --------------------------------------
 -- Declarations
