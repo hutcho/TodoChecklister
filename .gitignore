@@ -41,3 +41,4 @@ luac.out
 
 CHANGES.txt
 .vscode
+constants.lua
