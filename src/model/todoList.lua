@@ -141,7 +141,7 @@ end
 ---
 ---Gets the message of the day value based on available items the user currently has
 ---@return string @MOTD value
-function TodoList:GetMOTD()
+function TodoList:TaskCompletionSummary()
 	if (TodoChecklisterDB and #TodoChecklisterDB > 0) then
 		local completedList =
 			TableUtils:Filter(

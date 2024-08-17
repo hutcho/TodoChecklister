@@ -58,7 +58,7 @@ function TodoAddon:Init(event, name)
     MinimapIcon:Init()
 
     -------------------------------------------
-    Chat:Print(TodoList:GetMOTD())
+    Chat:MaybePrint(TodoList:TaskCompletionSummary())
 end
 
 main:RegisterEvent("ADDON_LOADED")
