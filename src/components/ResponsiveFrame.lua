@@ -62,14 +62,6 @@ end
 
 
 function OnUpdate(self)
-  if (self.isSizing == true) then
-    -- If the width or height is less than the allowed amount stop resizing
-    local width, height = self:GetParent():GetWidth(), self:GetParent():GetHeight()
-    if (width <= 199 or height <= 199) then
-      self.isSizing = false
-      self:GetParent():StopMovingOrSizing()
-    end
-  end
 
   if self.isScaling == true then
     local cx, cy = GetCursorPosition()
