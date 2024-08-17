@@ -19,8 +19,6 @@ local InterfaceOptions = TodoAddon.InterfaceOptions
 local TodoChecklisterFrame = TodoAddon.TodoChecklisterFrame
 ---@class Chat
 local Chat = TodoAddon.Chat
----@class MinimapIcon
-local MinimapIcon = TodoAddon.MinimapIcon
 
 --------------------------------------
 -- Init keybindings
@@ -55,9 +53,8 @@ function TodoAddon:Init(event, name)
 
     -- Modules
     Chat:Init()
-    MinimapIcon:Init()
 
-    -------------------------------------------
+    -- Addon welcome message
     Chat:MaybePrint(TodoList:TaskCompletionSummary())
 end
 
