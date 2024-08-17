@@ -609,7 +609,7 @@ hooksecurefunc("HandleModifiedItemClick", function(link, itemLocation)
 
 -- ADDON COMPARTMENT FUNCS
 function TodoChecklister_OnAddonCompartmentClick(addonName, buttonName)
-	print("Hello from the addon compartment, clicked with " .. buttonName)
+    TodoChecklisterFrame:Toggle()
 end
 
 --------------------------------------
