@@ -1,5 +1,5 @@
-## Interface: 110000
-## Title: TodoChecklister
+## Interface: 110002
+## Title: |cffcc33ffTodoChecklister|r
 ## Renovator: github.com/hutcho
 ## Creator: Matheus Assis Rios (github.com/AssisrMatheus)
 ## Notes: Todo list
