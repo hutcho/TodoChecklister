@@ -116,14 +116,6 @@ function InterfaceOptions:Init()
   self.settingsCategory = category
   Settings.RegisterAddOnCategory(category)
 
-  -- SLASH_HELLOW1 = "/hw"
-  -- SLASH_HELLOW2 = "/helloworld"
-  -- SlashCmdList.HELLOW = function(msg, editBox)
-  --   Settings.OpenToCategory(category.ID)
-  -- end
-
-  Settings.OpenToCategory(category.ID)
-
 end
 
 --------------------------------------
