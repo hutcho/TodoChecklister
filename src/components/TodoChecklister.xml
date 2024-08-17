@@ -1,9 +1,10 @@
-<Ui xmlns="http://www.blizzard.com/wow/ui/" 
+<Ui xmlns="http://www.blizzard.com/wow/ui/"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 ..\FrameXML\UI.xsd">
+
   <Script file="TodoChecklister.lua"/>
 
-  <Frame name="DropIndicatorTemplate" virtual="true">
+  <Frame name="DropIndicatorTemplate" virtual="true" hidden="true">
     <Size>
       <AbsDimension y="3"/>
     </Size>
@@ -58,12 +59,12 @@
         <Scripts>
           <OnMouseDown>
             <!-- Create a fake animation -->
-            self.FontText:ClearAllPoints() 
+            self.FontText:ClearAllPoints()
             self.FontText:SetPoint("LEFT", self, "LEFT", 2, -2)
           </OnMouseDown>
           <OnMouseUp>
             <!-- Resets fake animation -->
-            self.FontText:ClearAllPoints() 
+            self.FontText:ClearAllPoints()
             self.FontText:SetPoint("LEFT", self, "LEFT", 0, 0)
             OnSelectItem(self)
             PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON);
@@ -124,7 +125,7 @@
             </Offset>
           </Anchor>
         </Anchors>
-        <Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+<!--         <Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
           <BackgroundInsets>
             <AbsInset left="4" right="4" top="4" bottom="4" />
           </BackgroundInsets>
@@ -134,7 +135,7 @@
           <EdgeSize>
             <AbsValue val="16" />
           </EdgeSize>
-        </Backdrop>
+        </Backdrop> -->
 
         <Layers>
           <Layer level="OVERLAY">
@@ -186,20 +187,6 @@
   </Frame>
 
   <Frame name="TodoChecklisterTemplate" inherits="TodoChecklisterResponsiveFrameTemplate" parent="UIParent" virtual="true">
-    <Scripts>
-      <OnShow>
-        OnShow(self)
-      </OnShow>
-      <OnSizeChanged>
-        OnSizeChanged(self)
-      </OnSizeChanged>
-      <OnEnter>
-        OnEnter(self)
-      </OnEnter>
-      <OnLeave>
-        OnLeave(self)
-      </OnLeave>
-    </Scripts>
 
     <Anchors>
       <Anchor point="BOTTOMRIGHT">
@@ -263,12 +250,8 @@
           </OnHyperlinkClick>
         </Scripts>
         <Anchors>
-          <Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
-            <Offset x="20" y="-32"/>
-          </Anchor>
-          <Anchor point="TOPRIGHT" relativeTo="$parent" relativePoint="TOPRIGHT">
-            <Offset x="-30" y="4"/>
-          </Anchor>
+          <Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT"><Offset x="20" y="-32"/></Anchor>
+          <Anchor point="TOPRIGHT" relativeTo="$parent" relativePoint="TOPRIGHT"><Offset x="-30" y="4"/></Anchor>
         </Anchors>
         <FontString inherits="ChatFontNormal"/>
       </EditBox>
@@ -306,7 +289,7 @@
             </Offset>
           </Anchor>
         </Anchors>
-        <Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+<!--         <Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
           <BackgroundInsets>
             <AbsInset left="4" right="4" top="4" bottom="4" />
           </BackgroundInsets>
@@ -316,7 +299,7 @@
           <EdgeSize>
             <AbsValue val="16" />
           </EdgeSize>
-        </Backdrop>
+        </Backdrop> -->
 
         <Layers>
           <Layer level="OVERLAY">

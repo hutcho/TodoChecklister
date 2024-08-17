@@ -2,10 +2,10 @@
 -- Imports
 --------------------------------------
 ---@class TodoAddon
-local TodoAddon = select(2, ...)
+local addonName, TodoAddon = ...
 
 ---@class Settings
-local Settings = TodoAddon.Settings
+local TCSettings = TodoAddon.Settings
 ---@class ResponsiveFrame
 local ResponsiveFrame = TodoAddon.ResponsiveFrame
 ---@class TableUtils
@@ -14,7 +14,8 @@ local TableUtils = TodoAddon.TableUtils
 local TodoList = TodoAddon.TodoList
 ---@class FunctionUtils
 local FunctionUtils = TodoAddon.FunctionUtils
-
+---@class InterfaceOptions
+local InterfaceOptions = TodoAddon.InterfaceOptions
 --------------------------------------
 -- Declarations
 --------------------------------------
@@ -122,17 +123,12 @@ function TodoChecklisterFrame:CheckItemWithIndex(indexToCheck)
 		TodoList:UpdateItem(indexToCheck, {isChecked = (not item.isChecked)})
 		self.memoizationId = self.memoizationId + 1
 		self:OnUpdate()
-		if
-			(Settings:PlayFanfare() and
-				TableUtils:Every(
-					TodoList:GetItems(),
-					function(item)
-						return item.isChecked == true
-					end
-				))
-		 then
-			PlaySound(SOUNDKIT.READY_CHECK)
-			TodoAddon.Chat:Print("|cff00cc66Congratulations!!|r You have completed your list")
+		-- Check if all items are done
+		if TableUtils:Every(TodoList:GetItems(), function(item) return item.isChecked == true end) then
+			if TCSettings:PlayFanfare() then
+				PlaySound(SOUNDKIT.READY_CHECK)
+			end
+			TodoAddon.Chat:MaybePrint("|cff00cc66Congratulations!|r You have completed your list!")
 		end
 	end
 end
@@ -171,7 +167,7 @@ end
 function TodoChecklisterFrame:ClearSelected()
 	self.selectedItem = 0
 	self.frame.TodoText:SetText("")
-	if (not Settings.KeepFocus()) then
+	if (not TCSettings.KeepFocus()) then
 		self.frame.TodoText:ClearFocus()
 	end
 end
@@ -187,7 +183,27 @@ function TodoChecklisterFrame:Toggle()
 		PlaySound(SOUNDKIT.IG_MAINMENU_CLOSE)
 	end
 
-	Settings:SetIsShown(self.frame:IsShown())
+	TCSettings:SetIsShown(self.frame:IsShown())
+end
+
+---Toggle the frame's visibility
+function TodoChecklisterFrame:Show()
+	if not self.frame:IsShown() then
+		self.frame:Show()
+		PlaySound(SOUNDKIT.IG_MAINMENU_CLOSE)
+	end
+
+	TCSettings:SetIsShown(self.frame:IsShown())
+end
+
+---Toggle the frame's visibility
+function TodoChecklisterFrame:Hide()
+	if (self.frame:IsShown()) then
+		self.frame:Hide()
+		PlaySound(SOUNDKIT.IG_MAINMENU_OPTION)
+	end
+
+	TCSettings:SetIsShown(self.frame:IsShown())
 end
 
 ---
@@ -354,7 +370,7 @@ function TodoChecklisterFrame:OnUpdate()
 			self.frame.Background.BlankText:SetText("")
 		else
 			self.frame.Background.BlankText:SetText(
-				"You have no items on your list \r\n\r\n Start by typing them in the box above \r\n\r\n =)"
+				"You have nothing in your list\r\n\r\nStart by typing in the box above"
 			)
 		end
 
@@ -482,7 +498,7 @@ function TodoChecklisterFrame:Defaults()
 	self.frame:SetAlpha(1)
 	self.memoizationId = 0
 
-	Settings:Defaults()
+	SetDefaultTodoChecklisterSettings() --reset options to defaults
 	self:LoadCFG()
 end
 
@@ -490,21 +506,21 @@ end
 ---Load required configuration for this class
 function TodoChecklisterFrame:LoadCFG()
 	if (self.frame) then
-		if (Settings:IsKeepFocusShown()) then
+		if (TCSettings:IsKeepFocusShown()) then
 			self.frame.KeepFocus:Show()
 		else
 			self.frame.KeepFocus:Hide()
 		end
 
 		self.memoizationId = self.memoizationId + 1
-		self.frame.KeepFocus:SetChecked(Settings:KeepFocus())
+		self.frame.KeepFocus:SetChecked(TCSettings:KeepFocus())
 
-		if (not Settings:KeepFocus()) then
+		if (not TCSettings:KeepFocus()) then
 			TodoChecklister.TodoText:ClearFocus()
 		end
 
-		if (Settings:Opacity()) then
-			self.frame:SetAlpha(Settings:Opacity())
+		if (TCSettings:Opacity()) then
+			self.frame:SetAlpha(TCSettings:Opacity())
 		end
 
 		-- Set up scroll bar
@@ -514,9 +530,9 @@ function TodoChecklisterFrame:LoadCFG()
 		end
 		HybridScrollFrame_CreateButtons(self.frame.ScrollFrame, "TodoItemTemplate")
 
-		self.displayLinked = Settings:DisplayLinked()
-		self.displayBankOnLinked = Settings:DisplayBankOnLinked()
-		self.displayChargesOnLinked = Settings:DisplayChargesOnLinked()
+		self.displayLinked = TCSettings:DisplayLinked()
+		self.displayBankOnLinked = TCSettings:DisplayBankOnLinked()
+		self.displayChargesOnLinked = TCSettings:DisplayChargesOnLinked()
 
 		self:OnUpdate()
 	end
@@ -567,16 +583,14 @@ function TodoChecklisterFrame:Init()
 	-- Set up defaults
 	self:LoadCFG()
 
-	if (Settings:IsShown()) then
+	if (TCSettings:IsShown()) then
 		-- Display the frame
 		self:Toggle()
 	end
 end
 
-hooksecurefunc(
-	"ContainerFrameItemButton_OnModifiedClick",
-	function(self, button)
-		-- If any of these conditions are true, the link will have been posted
+hooksecurefunc("HandleModifiedItemClick", function(link, itemLocation)
+	    -- If any of these conditions are true, the link will have been posted
 		-- to another UI element by the time this hook is called.
 		if
 			not TodoChecklisterFrame.frame.TodoText:HasFocus() or
@@ -585,22 +599,18 @@ hooksecurefunc(
 					(TradeSkillFrame and TradeSkillFrame.SearchBox and TradeSkillFrame.SearchBox:HasFocus()) or
 					(CommunitiesFrame and CommunitiesFrame.ChatEditBox and CommunitiesFrame.ChatEditBox:HasFocus()) or
 					(SocialPostFrame and Social_IsShown()))
-		 then
+		then
 			-- Link will have been posted to one of the above areas. Ignore.
 			return false
 		end
-
-		local bag = self:GetParent():GetID()
-		local slot = self:GetID()
-		local link = GetContainerItemLink(bag, slot)
-
-		if self.hasStackSplit == 1 then
-			StackSplitFrame:Hide()
-		end
-
 		TodoChecklisterFrame.frame.TodoText:Insert(link)
 	end
 )
+
+-- ADDON COMPARTMENT FUNCS
+function TodoChecklister_OnAddonCompartmentClick(addonName, buttonName)
+	print("Hello from the addon compartment, clicked with " .. buttonName)
+end
 
 --------------------------------------
 -- XML Events
@@ -639,23 +649,24 @@ function OnSelectItem(frame)
 end
 
 function ToggleFocusSettings(frame)
-	Settings:ToggleFocus()
+	TCSettings:ToggleFocus()
 	TodoChecklisterFrame:LoadCFG()
+	InterfaceOptions:LoadCFG()
 end
 
 function ToggleFocusLoad(frame)
-	frame:SetChecked(Settings:KeepFocus())
+	frame:SetChecked(TCSettings:KeepFocus())
 end
 
 function OnEnter(frame)
-	-- if (Settings:OpacityOnHover()) then
-	-- 	frame:SetAlpha(Settings:OpacityOnHover())
+	-- if (TCSettings:OpacityOnHover()) then
+	-- 	frame:SetAlpha(TCSettings:OpacityOnHover())
 	-- end
 end
 
 function OnLeave(frame)
-	-- if (Settings:Opacity()) then
-	-- 	frame:SetAlpha(Settings:Opacity())
+	-- if (TCSettings:Opacity()) then
+	-- 	frame:SetAlpha(TCSettings:Opacity())
 	-- else
 	-- 	frame:SetAlpha(1)
 	-- end

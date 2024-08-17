@@ -4,6 +4,7 @@
 ## Creator: Matheus Assis Rios (github.com/AssisrMatheus)
 ## Notes: Todo list
 ## Version: 2.0.0
+## AddonCompartmentFunc: TodoChecklister_OnAddonCompartmentClick
 ## DefaultState: enabled
 ## OptionalDeps: LibStub, LibDataBroker
 ## SavedVariables: TodoChecklisterDB, TodoChecklisterMapIcon, TodoChecklisterSettingsDB
