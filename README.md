@@ -37,23 +37,28 @@ A todolist/checklist AddOn for World of Warcraft. Save the bad guy's names, the 
 
 	![mapButton](./button.png)
 
-- Type `/todo tg` to toggle the list
+## Commands
 
-## List of slash commands
-`/todo help` - Display available commands
+`/todo` - Display available commands
 
-`/todo reload` - Reset you window to its default properties(size, position, scale)
+`/todo show` - Show the list
 
-`/todo tg` - Toggle the Todo window
+`/todo hide` - Hide the list
 
-`/todo add {message}` - Adds `{message}` to your item list
-  Example: `/todo add My item` will add a item named "My item" to your list
+`/todo toggle` - Show/hide the list
 
-`/todo rmv {position}` - Remove item in `{position}`
-  Example: `/todo rmv 1` removes the first item from the list
+`/todo add MESSAGE` - Adds `MESSAGE` to your list
+  Example: `/todo add do nagrand dailies` will add a item named "do nagrand dailies" to your list
 
-`/todo mv {original_position} {target_position}` - Move item from `{original_position}` to `{target_position}`
-  Example: `/todo mv 1 3` Moves the first item in the list to the 3rd slot
+`/todo tick INDEX` - Ticks/unticks an item at `INDEX`
+  Example: `/todo tick 1` ticks the first item on your list
 
-`/todo chk {position}` - Check or unchecks an item in `{position}`
-  Example: `/todo chk 1` Checks the first intem on your list
+`/todo move FROM_INDEX TO_INDEX` - Move item from `FROM_INDEX` to `TO_INDEX`
+  Example: `/todo move 1 3` moves the first item to the 3rd slot
+
+`/todo remove INDEX` - Remove item at `INDEX`
+  Example: `/todo remove 1` removes the first item from the list
+
+`/todo set` - Open Addon options screen. Can also use `/todo options`.
+
+`/todo resetposition` - Reset the list window to its default size, position and scale. Does not touch the list items.
