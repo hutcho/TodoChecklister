@@ -157,36 +157,6 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
             </Layers>
           </CheckButton>
 
-          <CheckButton parentKey="ToggleMapButton" name="$parentToggleMapButton" inherits="SettingsCheckBoxTemplate">
-            <Scripts>
-              <OnLoad>
-                self.Text:SetText("Show minimap icon");
-              </OnLoad>
-              <OnClick>
-                ToggleMapClick(self)
-              </OnClick>
-            </Scripts>
-
-            <Anchors>
-              <Anchor point="TOPLEFT" relativeTo="$parentDisplayChargesOnLinked" relativePoint="BOTTOMLEFT">
-                <Offset>
-                  <AbsDimension x="-15" y="0"/>
-                </Offset>
-              </Anchor>
-            </Anchors>
-
-            <Layers>
-              <Layer level="OVERLAY">
-                <FontString name="$parentText" parentKey="Text" inherits="GameFontWhite" justifyH="LEFT">
-                  <Anchors>
-                    <Anchor point="LEFT" relativeTo="$parent" relativePoint="Right">
-                    </Anchor>
-                  </Anchors>
-                </FontString>
-              </Layer>
-            </Layers>
-          </CheckButton>
-
           <CheckButton parentKey="MuteChatCheckButton" name="$parentMuteChatCheckButton" inherits="SettingsCheckBoxTemplate">
 
             <Scripts>
@@ -199,7 +169,11 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
             </Scripts>
 
             <Anchors>
-              <Anchor point="TOPLEFT" relativeTo="$parentToggleMapButton" relativePoint="BOTTOMLEFT"></Anchor>
+              <Anchor point="TOPLEFT" relativeTo="$parentDisplayChargesOnLinked" relativePoint="BOTTOMLEFT">
+                <Offset>
+                  <AbsDimension x="-15" y="0"/>
+                </Offset>
+              </Anchor>
             </Anchors>
 
             <Layers>
