@@ -565,7 +565,7 @@ function TodoChecklisterFrame:Init()
 	self.frame = frame
 
 	-- Display window title
-	self.frame.Title:SetText(UnitName("player") .. "'s List")
+	self.frame.Title:SetText("Todo list")
 
 	-- Change window close button to minimize button
 	_G["TodoChecklisterClose"]:SetNormalTexture("Interface\\Buttons\\UI-Panel-HideButton-Up")
