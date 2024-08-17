@@ -73,16 +73,6 @@ function TCSettings:SetDisplayLinked(value)
 	TodoChecklisterSettingsDB.displayLinked = value
 end
 
----@return boolean @Whether or not to display the icon on minimap
-function TCSettings:DisplayMinimapIcon()
-	return TodoChecklisterSettingsDB.displayMinimapIcon
-end
-
----@param value boolean @Whether or not to display the icon on minimap
-function TCSettings:SetDisplayMinimapIcon(value)
-	TodoChecklisterSettingsDB.displayMinimapIcon = value
-end
-
 ---@return boolean @Whether or not to display chat messages
 function TCSettings:ChatShow()
 	return TodoChecklisterSettingsDB.chatShow
@@ -135,7 +125,6 @@ function SetDefaultTodoChecklisterSettings()
 	TodoChecklisterSettingsDB["keepFocus"] = false
 	TodoChecklisterSettingsDB["playFanfare"] = true
 	TodoChecklisterSettingsDB["displayLinked"] = false
-	TodoChecklisterSettingsDB["displayMinimapIcon"] = true
 	TodoChecklisterSettingsDB["chatShow"] = true
 	TodoChecklisterSettingsDB["displayBankOnLinked"] = false
 	TodoChecklisterSettingsDB["displayChargesOnLinked"] = false
@@ -154,7 +143,6 @@ function TCSettings:Init()
 		---@field public windowOpacity number|nil @The alpha value of 0 to 1 for the window opacity
 		---@field public playFanfare boolean|nil @Whether or not a fanfare sound should be played
 		---@field public displayLinked boolean|nil @Whether or not to display linked items count from bag
-		---@field public displayMinimapIcon boolean|nil @Whether or not to display the icon on minimap
 		---@field public chatShow boolean|nil @Whether or not to display chat messages
 		---@field public windowOpacityOnHover number|nil @The alpha value of 0 to 1 for the window opacity when hovering the mouse
 		---@field public displayBankOnLinked number|nil @Whether or not should count bank items on linked items
