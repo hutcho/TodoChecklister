@@ -1,10 +1,4 @@
---------------------------------------
--- Imports
---------------------------------------
----@class TodoAddon
-local TodoAddon = select(2, ...)
----@type string
-local addonName = select(1, ...)
+local addonName, TodoAddon = ...
 
 ---@class Constants
 local Constants = TodoAddon.Constants
@@ -37,13 +31,13 @@ function Debug:Init()
 
 		SLASH_FRAMESTK1 = "/fs" -- new slash command for showing framestack tool
 		SlashCmdList.FRAMESTK = function()
-			LoadAddOn("Blizzard_DebugTools")
+			C_AddOns.LoadAddOn("Blizzard_DebugTools")
 			FrameStackTooltip_Toggle()
 		end
 	end
 end
 
-function printDBG(...)
+function Debug:printDBG(...)
 	if (Constants.debugMode) then
 		print(...)
 	end
