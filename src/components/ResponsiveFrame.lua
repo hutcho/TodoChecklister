@@ -8,6 +8,7 @@ TodoAddon.ResponsiveFrame = {}
 ---@class ResponsiveFrame
 local ResponsiveFrame = TodoAddon.ResponsiveFrame
 
+
 --------------------------------------
 -- ResponsiveFrame functions
 --------------------------------------
@@ -58,6 +59,10 @@ end
 
 
 function OnUpdate(self)
+  if self.isSizing == true then
+    TodoAddon.TodoChecklisterFrame:OnUpdate()
+  end
+
   if self.isScaling == true then
 
     local cursor_x, cursor_y = GetCursorPosition()
