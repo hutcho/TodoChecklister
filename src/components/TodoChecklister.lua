@@ -570,10 +570,8 @@ function TodoChecklisterFrame:Init()
 	-- Change window close button to minimize button
 	_G["TodoChecklisterClose"]:SetNormalTexture("Interface\\Buttons\\UI-Panel-HideButton-Up")
 	_G["TodoChecklisterClose"]:SetPushedTexture("Interface\\Buttons\\UI-Panel-HideButton-Down")
-	_G["TodoChecklisterClose"]:SetScript(
-		"OnClick",
-		function()
-			TodoChecklisterFrame:Toggle()
+	_G["TodoChecklisterClose"]:SetScript("OnClick", function()
+			TodoChecklisterFrame:Close()
 		end
 	)
 
@@ -583,10 +581,9 @@ function TodoChecklisterFrame:Init()
 	-- Set up defaults
 	self:LoadCFG()
 
-	if (TCSettings:IsShown()) then
-		-- Display the frame
-		self:Toggle()
-	end
+	-- Show the list
+	if (TCSettings:IsShown()) then self:Show() end
+
 end
 
 hooksecurefunc("HandleModifiedItemClick", function(link, itemLocation)
@@ -620,6 +617,7 @@ function OnShow(frame)
 end
 
 function OnSizeChanged(frame)
+	-- XXX This never gets called
 	frame.ScrollFrame:SetHeight(frame.Background:GetHeight())
 	HybridScrollFrame_CreateButtons(frame.ScrollFrame, "TodoItemTemplate")
 	TodoChecklisterFrame:OnUpdate()
