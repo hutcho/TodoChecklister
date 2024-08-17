@@ -7,8 +7,6 @@ local addonName, TodoAddon = ...
 local Constants = TodoAddon.Constants
 ---@class Settings
 local TCSettings = TodoAddon.Settings
----@class MinimapIcon
-local MinimapIcon = TodoAddon.MinimapIcon
 
 --------------------------------------
 -- Declarations
@@ -26,8 +24,7 @@ local InterfaceOptions = TodoAddon.InterfaceOptions
 function InterfaceOptions:Defaults()
   -- This will also call TCSettings:Defaults
   TodoAddon.TodoChecklisterFrame:Defaults()
-  -- self:LoadCFG()
-  TodoAddon.MinimapIcon:LoadCFG()
+  self:LoadCFG()
 end
 
 
@@ -51,7 +48,6 @@ function InterfaceOptions:LoadCFG()
 
     self.frame.TCSettingsContainer.LinkedCounterCheckButton:SetChecked(TCSettings:DisplayLinked())
     self.frame.TCSettingsContainer.DisplayBankOnLinked:SetChecked(TCSettings:DisplayBankOnLinked())
-    self.frame.TCSettingsContainer.ToggleMapButton:SetChecked(TCSettings:DisplayMinimapIcon())
     self.frame.TCSettingsContainer.MuteChatCheckButton:SetChecked(TCSettings:ChatShow())
     self.frame.TCSettingsContainer.FanfareCheck:SetChecked(TCSettings:PlayFanfare())
     self.frame.TCSettingsContainer.DisplayChargesOnLinked:SetChecked(TCSettings:DisplayChargesOnLinked())
@@ -148,13 +144,6 @@ end
 function ShowItemCountFromBagsClick(frame)
   PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON)
   TCSettings:SetDisplayLinked(frame:GetChecked())
-  InterfaceOptions:LoadCFG()
-end
-
-function ToggleMapClick(frame)
-  PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON);
-  TCSettings:SetDisplayMinimapIcon(frame:GetChecked())
-  TodoAddon.MinimapIcon:LoadCFG()
   InterfaceOptions:LoadCFG()
 end
 
