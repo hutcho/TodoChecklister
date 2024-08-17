@@ -25,11 +25,11 @@ function ResponsiveFrame:OnLoad(frame)
   frame:SetScale(1)
 
   -- cartesian coords
-  frame.x_leftedge = frame:GetLeft()
-  frame.y_bottomedge = (frame:GetTop() - frame:GetHeight())
+  -- frame.x_leftedge = frame:GetLeft()
+  -- frame.y_bottomedge = (frame:GetTop() - frame:GetHeight())
 
   frame:SetScript("OnDragStart", function(self, button)
-      self:StartMoving()
+      self:StartMoving(true)
     end
   )
 
@@ -48,13 +48,9 @@ function OnLoad(frame)
 end
 
 function OnMouseDown(self, button)
-  -- Fix a bug if you click too much in the scale button
-  -- self:GetParent():StartMoving()
-  -- self:GetParent():StopMovingOrSizing()
-
   if button == "LeftButton" then
     self.isSizing = true
-    self:GetParent():StartSizing("BOTTOMRIGHT")
+    self:GetParent():StartSizing("BOTTOMRIGHT", true)
   elseif button == "RightButton" then
     self.isScaling = true
   end
@@ -62,26 +58,27 @@ end
 
 
 function OnUpdate(self)
-
   if self.isScaling == true then
-    local cx, cy = GetCursorPosition()
-    cx = cx / self:GetEffectiveScale() - self:GetParent():GetLeft()
-    cy = self:GetParent():GetHeight() - (cy / self:GetEffectiveScale() - self:GetParent():GetBottom())
 
-    local tNewScale = cx / self:GetParent():GetWidth()
-    local tx, ty = self:GetParent().x / tNewScale, self:GetParent().y / tNewScale
-    local newScale = self:GetParent():GetScale() * tNewScale
+    local cursor_x, cursor_y = GetCursorPosition()
+    local left, bottom, width, height  = self:GetParent():GetRect()
+    local effectivescale = self:GetParent():GetEffectiveScale()
 
-    if (newScale > 0) then
-      local finalScale = self:GetParent():GetScale() * tNewScale
-      if (finalScale > 0.5) then
-        self:GetParent():ClearAllPoints()
-        self:GetParent():SetScale(self:GetParent():GetScale() * tNewScale)
-        self:GetParent():SetPoint("BOTTOMLEFT", UIParent, "BOTTOMLEFT", tx, ty)
-        self:GetParent().x, self:GetParent().y = tx, ty
-      end
+    local cursor_x_offset_from_leftedge = (cursor_x / effectivescale) - left
+    local cursor_y_offset_from_topedge = bottom - (cursor_y / effectivescale) + height
+
+    local tNewScale = cursor_x_offset_from_leftedge / width
+    local tx, ty = left / tNewScale, bottom / tNewScale
+
+    local finalScale = self:GetParent():GetScale() * tNewScale
+    if (finalScale > 0.5) then
+      self:GetParent():ClearAllPoints()
+      self:GetParent():SetPoint("BOTTOMLEFT", UIParent, "BOTTOMLEFT", tx, ty)
+      self:GetParent():SetScale(finalScale)
     end
+
   end
+
 end
 
 function OnMouseUp(self, button)
@@ -91,5 +88,4 @@ function OnMouseUp(self, button)
     self.isScaling = false
   end
   self:GetParent():StopMovingOrSizing()
-
 end
