@@ -571,7 +571,7 @@ function TodoChecklisterFrame:Init()
 	_G["TodoChecklisterClose"]:SetNormalTexture("Interface\\Buttons\\UI-Panel-HideButton-Up")
 	_G["TodoChecklisterClose"]:SetPushedTexture("Interface\\Buttons\\UI-Panel-HideButton-Down")
 	_G["TodoChecklisterClose"]:SetScript("OnClick", function()
-			TodoChecklisterFrame:Close()
+			TodoChecklisterFrame:Hide()
 		end
 	)
 
