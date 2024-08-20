@@ -66,3 +66,8 @@ or
 You can download it from:
 - <https://www.curseforge.com/wow/addons/todochecklister2>
 - <https://github.com/hutcho/TodoChecklister/tags>
+
+
+# Credits
+
+This addon is a fork of https://github.com/AssisrMatheus/TodoChecklister. All original work was done by assisrMatheus. I have done renovation work to get it working without errors on modern retail WoW.
