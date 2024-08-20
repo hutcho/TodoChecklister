@@ -1,41 +1,38 @@
-<!-- [![Downloads](http://cf.way2muchnoise.eu/full_341737_downloads.svg)](https://www.curseforge.com/wow/addons/todochecklister)
-[![Downloads](https://img.shields.io/github/downloads/AssisrMatheus/TodoChecklister/total)](https://github.com/AssisrMatheus/TodoChecklister/releases)
-[![Gitmoji](https://img.shields.io/badge/gitmoji-%20😜%20😍-FFDD67.svg)](https://gitmoji.carloscuesta.me) -->
+# TodoChecklister
 
-<!--
-## Download links
-You can download it from a handful of places:
-- [Curseforge/twitch](https://www.curseforge.com/wow/addons/todochecklister/files)
-- [Github releases](https://github.com/AssisrMatheus/TodoChecklister/releases)
-- [WoW Interface - Retail](https://www.wowinterface.com/downloads/info25349-TodoChecklister.html)
-- [WoW Interface - Classic](https://www.wowinterface.com/downloads/info25348-TodoChecklister.html) -->
+A todo list addon for World of Warcraft. Save a persistent list that that you can update
+on any character you play. Write things down so you don't forget them. Tick them off.
+Delete them from the list.
 
-# TodoChecklister redux
-A todolist/checklist AddOn for World of Warcraft. Save the bad guy's names, the items you're going to farm, the path you're going to take.
+This addon is listed under the name TodoChecklister2 on curseforge, but it will appear
+in game as just TodoChecklister (without the 2).
 
 ![demoGif](./demo1.2.gif)
 
-- Link items from you bag and display their amount
+- Write a thing you need todo later on your list
+- Link items from you bag
+- Display item counts
 - List is saved even when you log out
-- Drag items around to move them
-- Click to edit
-- Multi-add items with "Keep focus" option!
-- More options like opacity or toggling in "Esc" -> Options -> Addons -> TodoChecklister
+- Drag list items around to change the order
+- Click the name of an item to edit
+- Multi-add items with the "Keep focus" option
+- More options like opacity or toggling in "ESC" -> Options -> Addons -> TodoChecklister
 
 ## Installation
-- Download the latest version from any link in the top of this page
-- Extract the files on your WoW Addon folder, usually `C:\Program Files (x86)\World of Warcraft\_retail_\Interface\AddOns\TodoChecklister`.
+
+- Search for it on curseforge as `TodoChecklister2`
+
+or
+
+- Download here and extract the files on your WoW Addon folder,
+  usually `C:\Program Files (x86)\World of Warcraft\_retail_\Interface\AddOns\TodoChecklister`.
 - Your file structure should look like this:
 
   ```
   WoWInstallFolder\_retail_\Interface\AddOns\TodoChecklister\TodoChecklister.toc
-  WoWInstallFolder\_retail_\Interface\AddOns\TodoChecklister\TodoChecklister\src\...
+  WoWInstallFolder\_retail_\Interface\AddOns\TodoChecklister\TodoChecklister\src\
+  and so on
   ```
-
-## How to use it
-- If you have an AddOn that integrates with `AceAddon` or `LibDBIcon`, the TodoChecklister icon will show on your minimap. You can show the list by clicking the icon.
-
-	![mapButton](./button.png)
 
 ## Commands
 
@@ -62,3 +59,10 @@ A todolist/checklist AddOn for World of Warcraft. Save the bad guy's names, the 
 `/todo set` - Open Addon options screen. Can also use `/todo options`.
 
 `/todo resetposition` - Reset the list window to its default size, position and scale. Does not touch the list items.
+
+
+# Download links
+
+You can download it from:
+- <https://www.curseforge.com/wow/addons/todochecklister2>
+- <https://github.com/hutcho/TodoChecklister/tags>
