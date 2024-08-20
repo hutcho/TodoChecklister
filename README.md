@@ -39,7 +39,7 @@ A todolist/checklist AddOn for World of Warcraft. Save the bad guy's names, the 
 
 ## Commands
 
-`/todo` - Display available commands
+`/todo help` - Display available commands
 
 `/todo show` - Show the list
 
