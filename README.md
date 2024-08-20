@@ -1,3 +1,6 @@
+[![Downloads](https://cf.way2muchnoise.eu/full_1086231_downloads.svg)](https://www.curseforge.com/wow/addons/todochecklister2)
+[![Downloads](https://img.shields.io/github/downloads/hutcho/TodoChecklister/total)](https://github.com/hutcho/TodoChecklister/releases)
+
 # TodoChecklister
 
 A todo list addon for World of Warcraft. Save a persistent list that that you can update
