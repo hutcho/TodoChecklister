@@ -84,7 +84,7 @@ function InterfaceOptions:Init()
   end
 
   -- Set up fixed values
-  self.frame.Title:SetText(addonName .. " v" .. C_AddOns.GetAddOnMetadata(addonName, "version"))
+  self.frame.Title:SetText(addonName)
   -- self.frame.TCSettingsContainer.Obs.Text:SetText("To report bugs visit: https://github.com/AssisrMatheus/TodoChecklister/issues")
 
   -- -- Set up the github popup
