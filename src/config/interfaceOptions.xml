@@ -214,10 +214,20 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
             </Layers>
           </CheckButton>
 
+          <Button name="$parentColorSwatch" parentKey="EntryColorSwatch" inherits="ColorSwatchTemplate">
+            <Anchors>
+              <Anchor point="TOPLEFT" relativeTo="$parentFanfareCheck" relativePoint="BOTTOMLEFT"></Anchor>
+            </Anchors>
+            <Scripts>
+              <OnClick>
+                ShowColorPicker(self)
+              </OnClick>
+            </Scripts>
+          </Button>
 
           <Slider parentKey="Opacity" name="$parentOpacity" inherits="OptionsSliderTemplate" minValue="0" maxValue="1" valueStep="0.01" defaultValue="1">
             <Anchors>
-              <Anchor point="TOPLEFT" relativeTo="$parentFanfareCheck" relativePoint="BOTTOMLEFT">
+              <Anchor point="TOPLEFT" relativeTo="$parentColorSwatch" relativePoint="BOTTOMLEFT">
                 <Offset>
                   <AbsDimension x="15" y="-30"/>
                 </Offset>
