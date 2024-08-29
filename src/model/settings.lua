@@ -48,6 +48,16 @@ function TCSettings:Opacity()
 	return TodoChecklisterSettingsDB.windowOpacity
 end
 
+---@return integer,integer,integer,integer @Get the rgba for entry coloring
+function TCSettings:GetEntryRGBA()
+	return unpack(TodoChecklisterSettingsDB.entryRBGA)
+end
+
+---@param rgba table @Sets the rgba for entry coloring
+function TCSettings:SetEntryRGBA(rgba)
+	TodoChecklisterSettingsDB.entryRBGA = rgba
+end
+
 ---@param opacity number @Sets the alpha value of 0 to 1 for the window opacity
 function TCSettings:SetOpacity(opacity)
 	TodoChecklisterSettingsDB.windowOpacity = opacity
@@ -130,12 +140,12 @@ function SetDefaultTodoChecklisterSettings()
 	TodoChecklisterSettingsDB["displayChargesOnLinked"] = false
 	TodoChecklisterSettingsDB["windowOpacity"] = 1
 	TodoChecklisterSettingsDB["windowOpacityOnHover"] = 1
+	TodoChecklisterSettingsDB["entryRBGA"] = {1,1,1,1}
 end
 
 ---Initializes options
 function TCSettings:Init()
 	if (not TodoChecklisterSettingsDB) then
-		print("MAKING DEFAULTS")
 		---The SavedVariable where the settings are stored into
 		---@field public isShown boolean|nil @Whether or not the window is displayed on the user's screen
 		---@field public keepFocus boolean|nil @Whether or not the KeepFocus checkbox is checked
@@ -147,10 +157,15 @@ function TCSettings:Init()
 		---@field public windowOpacityOnHover number|nil @The alpha value of 0 to 1 for the window opacity when hovering the mouse
 		---@field public displayBankOnLinked number|nil @Whether or not should count bank items on linked items
 		---@field public displayChargesOnLinked number|nil @Whether or not should count charges on linked items
+		---@field public entryRBGA table|nil @rgba for entry colour in the todo list
 		SetDefaultTodoChecklisterSettings()
 	end
 
-	-- TodoAddon.TableUtils:printTable(TodoChecklisterSettingsDB)
+	if TodoChecklisterSettingsDB.entryRBGA == nil then
+		TodoChecklisterSettingsDB["entryRBGA"] = {1,1,1,1}
+	end
+
+	-- TodoAddon.TableUtils:Output(TodoChecklisterSettingsDB)
 	-- print(TodoChecklisterSettingsDB.isShown)
 
 end
