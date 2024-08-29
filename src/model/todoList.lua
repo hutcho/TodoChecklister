@@ -125,10 +125,10 @@ function TodoList:GetIndexByText(text)
 	)
 end
 
----
+
 ---Finds the index of a given item in the saved list by its id field
----@param text string @The id value used to search in the list
----@return number @The index of such item
+---@param id string The id value used to search in the list
+---@return number id The index of such item
 function TodoList:GetIndexById(id)
 	return TableUtils:FindIndex(
 		TodoChecklisterDB,
