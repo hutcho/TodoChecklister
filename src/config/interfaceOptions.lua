@@ -32,6 +32,7 @@ end
 ---Load required configuration for this class
 -----------------------------------------------
 function InterfaceOptions:LoadCFG()
+  -- This function applies the settings to the actual live Settings window
     self.frame.TCSettingsContainer.FocusCheckButton:SetChecked(TCSettings:IsKeepFocusShown())
     self.frame.TCSettingsContainer.KeepFocusCheckButton:SetChecked(TCSettings:KeepFocus())
 
@@ -51,6 +52,7 @@ function InterfaceOptions:LoadCFG()
     self.frame.TCSettingsContainer.MuteChatCheckButton:SetChecked(TCSettings:ChatShow())
     self.frame.TCSettingsContainer.FanfareCheck:SetChecked(TCSettings:PlayFanfare())
     self.frame.TCSettingsContainer.DisplayChargesOnLinked:SetChecked(TCSettings:DisplayChargesOnLinked())
+    self.frame.TCSettingsContainer.EntryColorSwatch:SetColorRGB(TCSettings:GetEntryRGBA())
 
   if (TodoAddon.TodoChecklisterFrame) then
     -- Update the onscreen app frame.
@@ -163,6 +165,39 @@ function OpacityOnHoverValueChanged(frame)
   --   TCSettings:SetOpacityOnHover(frame:GetValue())
   --   InterfaceOptions:LoadCFG()
   -- end
+end
+
+function ShowColorPicker(self)
+
+  local function OnColorChanged()
+    local newR, newG, newB = ColorPickerFrame:GetColorRGB();
+    local newA = ColorPickerFrame:GetColorAlpha();
+    TCSettings:SetEntryRGBA({newR, newG, newB, newA})
+    if (InterfaceOptions.frame) then
+      InterfaceOptions:LoadCFG()
+    end
+  end
+
+  -- local function OnCancel()
+  --   print("OnCancel");
+  -- end
+
+  local r,g,b,a = TCSettings:GetEntryRGBA()
+
+  local options = {
+    swatchFunc = OnColorChanged,
+    opacityFunc = OnColorChanged,
+    -- cancelFunc = OnCancel,
+    hasOpacity = false,
+    opacity = a,
+    r = r,
+    g = g,
+    b = b
+  };
+
+  ColorPickerFrame:SetupColorPickerAndShow(options);
+
+
 end
 
 function DisplayBankClick(frame)

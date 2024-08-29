@@ -53,6 +53,7 @@
         <Layers>
           <Layer level="OVERLAY">
             <FontString parentKey="FontText" inherits="GameFontNormalSmall" justifyH="LEFT"/>
+            <!-- Maybe set colour here? -->
           </Layer>
         </Layers>
 
@@ -69,6 +70,9 @@
             OnSelectItem(self)
             PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON);
           </OnMouseUp>
+          <OnShow>
+            SetColourOfEntry(self)
+          </OnShow>
         </Scripts>
 
         <Frames>

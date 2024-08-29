@@ -534,6 +534,14 @@ function TodoChecklisterFrame:LoadCFG()
 		self.displayBankOnLinked = TCSettings:DisplayBankOnLinked()
 		self.displayChargesOnLinked = TCSettings:DisplayChargesOnLinked()
 
+		-- Loop through the buttons shown and change their colour.
+	-- TodoAddon.TableUtils:Output(self.frame.TodoContent)
+
+
+	-- self.frame.TodoContent.EntryColorSwatch:SetColorRGB(TCSettings:GetEntryRGBA())
+
+
+
 		self:OnUpdate()
 	end
 end
@@ -583,6 +591,12 @@ function TodoChecklisterFrame:Init()
 
 	-- Show the list
 	if (TCSettings:IsShown()) then self:Show() end
+
+	-- REMOVE THIS BEFORE COMMIT
+	-- Settings.OpenToCategory(InterfaceOptions.settingsCategory.ID)
+	-- REMOVE THIS BEFORE COMMIT
+
+
 
 end
 
@@ -644,6 +658,12 @@ end
 
 function OnSelectItem(frame)
 	TodoChecklisterFrame:SelectItem(frame:GetParent().todoItem)
+end
+
+function SetColourOfEntry(self)
+	local text = self.FontText
+	local r,g,b,a = TCSettings:GetEntryRGBA()
+	text:SetTextColor(r,g,b,a)
 end
 
 function ToggleFocusSettings(frame)
