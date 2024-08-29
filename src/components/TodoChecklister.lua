@@ -253,13 +253,13 @@ function TodoChecklisterFrame:PaintItem(frame, todoItem, index)
 				local remainingString = todoItem.text
 
 				-- If the remaining string still has linked items
-				while (remainingString and not (not GetItemInfo(remainingString))) do
+				while (remainingString and not (not C_Item.GetItemCount(remainingString))) do
 					-- Find the linked item position
 					local st, en = string.find(remainingString, "|Hitem:.-|r")
 
 					if (en) then
 						-- Set the final string to:
-						local count = GetItemCount(remainingString, self.displayBankOnLinked, self.displayChargesOnLinked)
+						local count = C_Item.GetItemCount(remainingString, self.displayBankOnLinked, self.displayChargesOnLinked, self.displayBankOnLinked, self.displayBankOnLinked)
 						if (count and count > 0) then
 							finalString =
 								table.concat {
