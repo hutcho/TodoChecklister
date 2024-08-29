@@ -534,15 +534,19 @@ function TodoChecklisterFrame:LoadCFG()
 		self.displayBankOnLinked = TCSettings:DisplayBankOnLinked()
 		self.displayChargesOnLinked = TCSettings:DisplayChargesOnLinked()
 
-		-- Loop through the buttons shown and change their colour.
-	-- TodoAddon.TableUtils:Output(self.frame.TodoContent)
-
-
-	-- self.frame.TodoContent.EntryColorSwatch:SetColorRGB(TCSettings:GetEntryRGBA())
-
-
+		self:ColorTheEntries(TCSettings:GetEntryRGBA())
 
 		self:OnUpdate()
+	end
+end
+
+
+function TodoChecklisterFrame:ColorTheEntries(r,g,b,a)
+	local scrollFrame = TodoItemsScrollFrame
+
+	for i = 1, #scrollFrame.buttons do
+		local button = scrollFrame.buttons[i].TodoContent.FontText
+		button:SetTextColor(r,g,b,a)
 	end
 end
 
