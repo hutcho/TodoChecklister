@@ -253,7 +253,7 @@ function TodoChecklisterFrame:PaintItem(frame, todoItem, index)
 				local remainingString = todoItem.text
 
 				-- If the remaining string still has linked items
-				while (remainingString and not (not C_Item.GetItemCount(remainingString))) do
+				while (remainingString and not (not C_Item.GetItemInfo(remainingString))) do
 					-- Find the linked item position
 					local st, en = string.find(remainingString, "|Hitem:.-|r")
 
