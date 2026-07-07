@@ -1,4 +1,4 @@
-## Interface: 110002
+## Interface: 120007
 ## Title: |cffcc33ffTodoChecklister|r
 ## Renovator: github.com/hutcho
 ## Creator: Matheus Assis Rios (github.com/AssisrMatheus)
