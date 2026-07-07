@@ -95,7 +95,7 @@
       </Button>
 
       <!-- Remove button -->
-      <Button parentKey="RemoveButton" name="$parentRemoveButton" inherits="CollapseButtonTemplate">
+      <Button parentKey="RemoveButton" name="$parentRemoveButton" inherits="TodoChecklisterCollapseButtonTemplate">
         <Size x="20" y="20"/>
 
         <!-- Attached on right side of text -->
@@ -259,7 +259,7 @@
         <FontString inherits="ChatFontNormal"/>
       </EditBox>
 
-      <Button parentKey="SaveButton" name="$parentSaveButton" inherits="CollapseButtonTemplate">
+      <Button parentKey="SaveButton" name="$parentSaveButton" inherits="TodoChecklisterCollapseButtonTemplate">
         <Size>
           <AbsDimension x="18" y="18"/>
         </Size>

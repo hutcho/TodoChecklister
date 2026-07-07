@@ -4,7 +4,7 @@
 
 
 <!-- This is the minimise "_" button template that is reused for the + button too. -->
-  <Button name="CollapseButtonTemplate" virtual="true">
+  <Button name="TodoChecklisterCollapseButtonTemplate" virtual="true">
     <Size x="18" y="18"/>
     <NormalTexture file="Interface\Buttons\UI-PlusButton-UP">
       <Size x="18" y="18"/>
