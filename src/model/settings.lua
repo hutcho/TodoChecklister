@@ -140,7 +140,7 @@ function SetDefaultTodoChecklisterSettings()
 	TodoChecklisterSettingsDB["displayChargesOnLinked"] = false
 	TodoChecklisterSettingsDB["windowOpacity"] = 1
 	TodoChecklisterSettingsDB["windowOpacityOnHover"] = 1
-	TodoChecklisterSettingsDB["entryRBGA"] = {1,1,1,1}
+	TodoChecklisterSettingsDB["entryRBGA"] = { 1, 1, 1, 1 }
 end
 
 ---Initializes options
@@ -162,10 +162,9 @@ function TCSettings:Init()
 	end
 
 	if TodoChecklisterSettingsDB.entryRBGA == nil then
-		TodoChecklisterSettingsDB["entryRBGA"] = {1,1,1,1}
+		TodoChecklisterSettingsDB["entryRBGA"] = { 1, 1, 1, 1 }
 	end
 
 	-- TodoAddon.TableUtils:Output(TodoChecklisterSettingsDB)
 	-- print(TodoChecklisterSettingsDB.isShown)
-
 end
