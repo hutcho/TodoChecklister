@@ -183,7 +183,7 @@ function TodoChecklisterFrame:Toggle()
 		PlaySound(SOUNDKIT.IG_MAINMENU_CLOSE)
 	end
 
-	TCSettings:SetIsShown(self.frame:IsShown())
+	TCSettings:IsShown(self.frame:IsShown())
 end
 
 ---Toggle the frame's visibility
@@ -193,7 +193,7 @@ function TodoChecklisterFrame:Show()
 		PlaySound(SOUNDKIT.IG_MAINMENU_CLOSE)
 	end
 
-	TCSettings:SetIsShown(self.frame:IsShown())
+	TCSettings:IsShown(self.frame:IsShown())
 end
 
 ---Toggle the frame's visibility
@@ -203,7 +203,7 @@ function TodoChecklisterFrame:Hide()
 		PlaySound(SOUNDKIT.IG_MAINMENU_OPTION)
 	end
 
-	TCSettings:SetIsShown(self.frame:IsShown())
+	TCSettings:IsShown(self.frame:IsShown())
 end
 
 ---
@@ -670,8 +670,9 @@ function SetColourOfEntry(self)
 	text:SetTextColor(r,g,b,a)
 end
 
-function ToggleFocusSettings(frame)
-	TCSettings:ToggleFocus()
+function ToggleFocusSettingsClick(frame)
+	PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON)
+	TCSettings:KeepFocus(frame:GetChecked())
 	TodoChecklisterFrame:LoadCFG()
 	InterfaceOptions:LoadCFG()
 end

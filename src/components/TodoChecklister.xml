@@ -206,8 +206,7 @@
 
         <Scripts>
           <OnClick>
-            ToggleFocusSettings(self)
-            PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON);
+            ToggleFocusSettingsClick(self)
           </OnClick>
           <OnLoad>
             self.Focus:SetText("Keep focus");
