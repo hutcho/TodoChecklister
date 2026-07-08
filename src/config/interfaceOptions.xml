@@ -21,8 +21,10 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
 
       <Frame parentKey="TCSettingsContainer" name="$parentSettingsContainer">
         <Anchors>
-          <Anchor point="TOPLEFT" relativeTo="Title" relativePoint="BOTTOMLEFT"></Anchor>
-          <Anchor point="BOTTOMRIGHT" relativeTo="Title" relativePoint="BOTTOMRIGHT"></Anchor>
+          <Anchor point="TOPLEFT" relativeTo="Title" relativePoint="BOTTOMLEFT">
+            <Offset x="0" y="-8"/>
+          </Anchor>
+          <Anchor point="BOTTOMRIGHT" relativeTo="$parent" relativePoint="BOTTOMRIGHT"></Anchor>
         </Anchors>
 
         <Frames>
