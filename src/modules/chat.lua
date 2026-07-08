@@ -42,7 +42,13 @@ Chat.commands = {
     -- Visibility commands
     ["show"] = function() TodoChecklisterFrame:Show() end,
     ["hide"] = function() TodoChecklisterFrame:Hide() end,
-    ["toggle"] = function() TodoChecklisterFrame:Toggle() end,
+    ["toggle"] = function()
+        if TodoChecklisterFrame.frame:IsShown() then
+            TodoChecklisterFrame:Hide()
+        else
+            TodoChecklisterFrame:Show()
+        end
+    end,
     ["add"] = function(...)
         if (TodoChecklisterFrame.selectedItem and TodoChecklisterFrame.selectedItem > 0) then
             TodoChecklisterFrame:ClearSelected()

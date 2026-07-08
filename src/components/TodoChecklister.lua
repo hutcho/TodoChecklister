@@ -172,38 +172,24 @@ function TodoChecklisterFrame:ClearSelected()
 	end
 end
 
----
----Toggle the frame's visibility
-function TodoChecklisterFrame:Toggle()
-	if (self.frame:IsShown()) then
-		self.frame:Hide()
-		PlaySound(SOUNDKIT.IG_MAINMENU_OPTION)
-	else
-		self.frame:Show()
-		PlaySound(SOUNDKIT.IG_MAINMENU_CLOSE)
-	end
-
-	TCSettings:IsShown(self.frame:IsShown())
-end
-
----Toggle the frame's visibility
+---Shows the frame
 function TodoChecklisterFrame:Show()
 	if not self.frame:IsShown() then
 		self.frame:Show()
 		PlaySound(SOUNDKIT.IG_MAINMENU_CLOSE)
 	end
 
-	TCSettings:IsShown(self.frame:IsShown())
+	TCSettings:SetIsShown(self.frame:IsShown())
 end
 
----Toggle the frame's visibility
+---Hides the frame
 function TodoChecklisterFrame:Hide()
 	if (self.frame:IsShown()) then
 		self.frame:Hide()
 		PlaySound(SOUNDKIT.IG_MAINMENU_OPTION)
 	end
 
-	TCSettings:IsShown(self.frame:IsShown())
+	TCSettings:SetIsShown(self.frame:IsShown())
 end
 
 ---
@@ -624,7 +610,11 @@ hooksecurefunc("HandleModifiedItemClick", function(link, itemLocation)
 
 -- ADDON COMPARTMENT FUNCS
 function TodoChecklister_OnAddonCompartmentClick(addonName, buttonName)
-    TodoChecklisterFrame:Toggle()
+    if TodoChecklisterFrame.frame:IsShown() then
+        TodoChecklisterFrame:Hide()
+    else
+        TodoChecklisterFrame:Show()
+    end
 end
 
 --------------------------------------
