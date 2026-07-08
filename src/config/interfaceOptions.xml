@@ -7,7 +7,13 @@ https://raw.githubusercontent.com/Gethe/wow-ui-source/live/Interface/AddOns/Bliz
 
     <Layers>
       <Layer level="OVERLAY">
-        <FontString name="Title" parentKey="Title" inherits="GameFontNormalLarge" justifyH="LEFT" justifyV="TOP"></FontString>
+        <FontString name="Title" parentKey="Title" inherits="GameFontNormalLarge" justifyH="LEFT" justifyV="TOP">
+          <Anchors>
+            <Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+              <Offset x="16" y="-16"/>
+            </Anchor>
+          </Anchors>
+        </FontString>
       </Layer>
     </Layers>
 
