@@ -23,10 +23,14 @@ local Chat = TodoAddon.Chat
 --------------------------------------
 -- Init keybindings
 --------------------------------------
--- Export the method TodoChecklisterFrame:Toggle to a global function
+-- Export a show/hide toggle to a global function
 -- so that it can be called from a keybind in bindings.xml
 GLOBAL_TodoChecklisterFrameToggle = function()
-    TodoChecklisterFrame:Toggle()
+    if TodoChecklisterFrame.frame:IsShown() then
+        TodoChecklisterFrame:Hide()
+    else
+        TodoChecklisterFrame:Show()
+    end
 end
 
 --------------------------------------
