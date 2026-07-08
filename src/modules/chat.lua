@@ -34,10 +34,12 @@ Chat.commands = {
         Chat:ForcePrint("|cff00cc66/todo toggle|r - Toggle show/hide list")
         Chat:ForcePrint("|cff00cc66/todo add|r |cffff2211TEXT|r - Adds |cffff2211TEXT|r to the list")
         Chat:ForcePrint("|cff00cc66/todo tick|r |cffff2211INDEX|r - Ticks/unticks list at |cffff2211INDEX|r")
-        Chat:ForcePrint("|cff00cc66/todo move|r |cffff2211FROM_INDEX TO_INDEX|r - Move item from |cffff2211FROM_INDEX|r to |cffff2211TO_INDEX|r")
+        Chat:ForcePrint(
+            "|cff00cc66/todo move|r |cffff2211FROM_INDEX TO_INDEX|r - Move item from |cffff2211FROM_INDEX|r to |cffff2211TO_INDEX|r")
         Chat:ForcePrint("|cff00cc66/todo remove|r |cffff2211INDEX|r - Remove list item at |cffff2211INDEX|r")
         Chat:ForcePrint("|cff00cc66/todo set|r - Open the options window. /todo options also works.")
-        Chat:ForcePrint("|cff00cc66/todo resetposition|r - Reset the list window to its default size, position and scale. Does not touch the list items.")
+        Chat:ForcePrint(
+            "|cff00cc66/todo resetposition|r - Reset the list window to its default size, position and scale. Does not touch the list items.")
     end,
     -- Visibility commands
     ["show"] = function() TodoChecklisterFrame:Show() end,
@@ -85,8 +87,6 @@ function Chat:ForcePrint(...)
     DEFAULT_CHAT_FRAME:AddMessage(string.join(" ", prefix, ...))
 end
 
-
-
 --------------------------------------
 -- Lifecycle Events
 --------------------------------------
@@ -95,14 +95,13 @@ end
 function Chat:Init()
     SLASH_TodoChecklister1 = self.command
     function SlashCmdList.TodoChecklister(msg, editBox)
-        if (msg.len == 0) then
-            -- User just typed "/todo" with no args, so give them help message
+        if (#msg == 0) then
+            -- User just typed "/todo" with no args, so give them the help message
             Chat.commands.help()
             return
         end
-
         local args = {}
-        for _, arg in ipairs({string.split(" ", msg)}) do
+        for _, arg in ipairs({ string.split(" ", msg) }) do
             if (#arg > 0) then
                 table.insert(args, arg)
             end
